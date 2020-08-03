@@ -8,6 +8,9 @@
 ##Modificá tu programa de forma que la información sobre pagos extras sea incorporada de manera versatil. 
 ##Agregá las siguientes variables antes del ciclo, para definir el comienzo, fin y monto de los pagos extras:
 
+#1.10
+#Modicá tu programa para que imprima una tabla mostrando el mes, el total pagado hasta el momento y el saldo restante. La salida debería verse aproximadamente así:
+
 saldo = 500000.0
 tasa = 0.05
 pago_mensual = 2684.11
@@ -37,6 +40,7 @@ while saldo >= 0:
         total_pagado = total_pagado + pago_extra
         
     total_pagado = total_pagado + pago_mensual
+    print(contador_mes, total_pagado, saldo)
 
-print('Total pagado', round(total_pagado, 2), 'en', contador_mes, 'meses.')
-
+print('Total pagado', total_pagado)
+print('Meses:', contador_mes)
