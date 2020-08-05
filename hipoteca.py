@@ -42,5 +42,7 @@ while saldo >= 0:
     total_pagado = total_pagado + pago_mensual
     print(contador_mes, total_pagado, saldo)
 
-print('Total pagado', total_pagado)
-print('Meses:', contador_mes)
+#print('Total pagado', total_pagado)
+#print('Meses:', contador_mes)
+
+print(f'total pagado:{total_pagado} en {contador_mes} meses')
