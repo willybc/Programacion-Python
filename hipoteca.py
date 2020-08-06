@@ -25,7 +25,7 @@ pago_extra_mes_comienzo = 61
 pago_extra_mes_fin = 108
 #pago_extra = 1000
 
-while saldo >= 0:
+while saldo > 0:
     contador_mes= contador_mes + 1
 
     saldo = (saldo * (1+tasa/12) ) - pago_mensual
