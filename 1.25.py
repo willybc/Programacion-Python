@@ -32,3 +32,12 @@ print(lista_frutas.count('Banana'))
 #Borrar la primer aparición de 'Banana'
 lista_frutas.remove('Banana')
 print(lista_frutas)
+
+#1.26
+##Ordenar mediante sort()
+lista_frutas.sort()
+print(lista_frutas)
+
+#Ordenar al revés
+lista_frutas.sort(reverse=True)
+print(lista_frutas)
