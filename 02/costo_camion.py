@@ -5,7 +5,10 @@ import csv
 
 def costo_camion(nombre_archivo):
     f = open('../Data/camion.csv', 'rt')
-    headers = next(f).split(',')
+
+    reader = csv.reader(f)
+    next(reader)
+
     valores = []
     precio_total = 0.0
 
