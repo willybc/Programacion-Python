@@ -4,7 +4,7 @@
 import csv
 
 def costo_camion(nombre_archivo):
-    f = open('../Data/camion.csv', 'rt')
+    f = open(nombre_archivo, 'rt')
 
     reader = csv.reader(f)
     next(reader)
