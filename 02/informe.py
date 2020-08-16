@@ -12,7 +12,6 @@ def leer_camion(nombre_archivo):
         try:
             ncajones = int(record['cajones'])
             precio = float(record['precio'])
-            nombre = record['nombre']
             
             costo_total += ncajones * precio
         except ValueError:
@@ -46,15 +45,13 @@ def recau(arch1, arch2):
     f = open(arch1, 'rt')
     reader = csv.reader(f)
     encabezados = next(reader)
-
-    precios2= {}
     
     recaudacion = 0
     recaudacion_total = 0
 
     for n_fila, fila in enumerate(reader, start=1):
         record = dict(zip(encabezados,fila))
-
+        
         ff = open(arch2, 'r')
         line = csv.reader(ff)
 

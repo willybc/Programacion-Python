@@ -1,4 +1,5 @@
 import csv
+#Debe devolver una lista un diccionario con todos los datos por cada arbol del parque elegido
 def leer_parque(nombre_archivo, parque):
     fila=[] # lista
 
@@ -18,11 +19,7 @@ def leer_parque(nombre_archivo, parque):
 fila = leer_parque('../Data/arbolado-en-espacios-verdes.csv', 'GENERAL PAZ')
 #print(fila)
 
-#Tome lista de arboles y devuelva el conjunto de especies
-#columna 'nombre_com'
-
-#Sugerencia : Usar comando set
-import csv
+#Tomar lista de arboles y devuelva el conjunto de especies
 def especies(lista_arboles):
     rows = lista_arboles
     especies = []
