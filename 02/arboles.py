@@ -16,4 +16,21 @@ def leer_parque(nombre_archivo, parque):
     return fila
 
 fila = leer_parque('../Data/arbolado-en-espacios-verdes.csv', 'GENERAL PAZ')
-print(fila)
+#print(fila)
+
+#Tome lista de arboles y devuelva el conjunto de especies
+#columna 'nombre_com'
+
+#Sugerencia : Usar comando set
+import csv
+def especies(lista_arboles):
+    rows = lista_arboles
+    especies = []
+    
+    for rows in lista_arboles:
+        especies.append(rows['nombre_com'])
+        sin_repeticion = set(especies)
+    return sin_repeticion
+
+especies = especies(fila)
+print(especies)
