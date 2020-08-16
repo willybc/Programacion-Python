@@ -1,26 +1,23 @@
-#Abrir el archivo que lea las lineas y calcule el precio pagado por los cajones cargados en el camion
-#Ayuda para intepretar un string 's' como un numero entero, usa int(s). Para punto flotante , usa float(s)
-
 import csv
 
 def costo_camion(nombre_archivo):
     f = open(nombre_archivo, 'rt')
-
     reader = csv.reader(f)
-    next(reader)
+    encabezados = next(reader)
+    
+    costo_total = 0.0
 
-    valores = []
-    precio_total = 0.0
-
-    for line in f:
+    for n_fila, fila in enumerate(reader, start=1):
+        record = dict(zip(encabezados,fila))
         try:
-            valores = line.strip().split(",")
-            precio_pagado = float(valores[1]) * float(valores[2])
-            precio_total = precio_pagado + precio_total
+            ncajones = int(record['cajones'])
+            precio = float(record['precio'])
+            costo_total += ncajones * precio
+            
         except ValueError:
-            print(f'error en lectura de datos en fila {line}' )
+            print(f'Fila {n_fila}: No pude interpretar: {fila}')
     f.close()
-    return precio_total
+    return costo_total
 
-costo = costo_camion('../Data/camion.csv')
+costo = costo_camion('../Data/fecha_camion.csv')
 print('Costo total:', costo)
