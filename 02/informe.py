@@ -1,18 +1,24 @@
 import csv
 #Precios pagado al productor de frutas
 def leer_camion(nombre_archivo):
-    total = 0.0
-    camion = []
+    costo_total = 0.0
+    fila=[]
+    f = open(nombre_archivo, 'rt')
+    reader = csv.reader(f)
+    encabezados = next(reader)
 
-    with open(nombre_archivo, 'rt') as f:
-        rows = csv.reader(f)
-        headers = next(rows)
-        for row in rows:
-            lote = (row[0], int(row[1]), float(row[2]))
-            camion.append(lote)
-
-            total += lote[1] * lote[2] 
-    return camion,total
+    for n_fila, fila in enumerate(reader, start=1):
+        record = dict(zip(encabezados,fila))
+        try:
+            ncajones = int(record['cajones'])
+            precio = float(record['precio'])
+            nombre = record['nombre']
+            
+            costo_total += ncajones * precio
+        except ValueError:
+            print(f'Fila {n_fila}: No pude interpretar: {fila}')
+    f.close()   
+    return record,costo_total
 
 #Precios de venta
 def leer_precios(nombre_archivo):
@@ -27,25 +33,46 @@ def leer_precios(nombre_archivo):
     return precios
 
 #Costo camion
-camion,costo = leer_camion('../Data/camion.csv')
+camion,costo = leer_camion('../Data/fecha_camion.csv')
 #print('Costo camion:', costo)
-
 precios = leer_precios('../Data/precios.csv')
 
 #Recaudacion con la venta
 recaudacion=0
 recaudacion_total=0
-for i in camion:
-    for n in precios:
-        if n == i[0]:
-            recaudacion = precios[n] * i[1]
-            recaudacion_total = recaudacion_total + recaudacion
-#print('Recaudacion total:', round(recaudacion_total,2))
+
+def recau(arch1, arch2):
+    fila=[]
+    f = open(arch1, 'rt')
+    reader = csv.reader(f)
+    encabezados = next(reader)
+
+    precios2= {}
+    
+    recaudacion = 0
+    recaudacion_total = 0
+
+    for n_fila, fila in enumerate(reader, start=1):
+        record = dict(zip(encabezados,fila))
+
+        ff = open(arch2, 'r')
+        line = csv.reader(ff)
+
+        nombre = record['nombre']
+        cajones = int(record['cajones'])
+        for line in ff:
+            row = line.split(',')
+            if nombre == row[0]:
+                recaudacion = int(cajones) * float(row[1])
+                recaudacion_total = (recaudacion_total) + recaudacion    
+    f.close()   
+    return recaudacion_total
+
+recaudacion_total = recau('../Data/fecha_camion.csv', '../Data/precios.csv')
+#print(recaudacion_total)
 
 #Diferencia
 diferencia = recaudacion_total - costo
-#print('Diferencia:', round(diferencia,2))
-
 print(f'| Costo camion {costo:<8} | Recaudacion venta {recaudacion_total:<8} | Diferencia {round(diferencia,2):<8}')
 
 if recaudacion_total > costo:
@@ -54,9 +81,3 @@ elif recaudacion_total == costo:
     print('No ganamos ,ni perdimos')
 else:
     print('Perdimos!')
-    
-
-
-
-    
-    
