@@ -174,3 +174,21 @@ prom3 = sum3/cont3
 print('Med\t\tGeneral Paz\t\tLos Andes\t\tCentenario') 
 print('Alt\t\t',max1,'\t\t\t',max2,'\t\t\t',max3)
 print('Pro\t\t',round(prom1,2),'\t\t\t',round(prom2,2),'\t\t\t',round(prom3,2))
+
+def obtener_inclinaciones(lista_arboles, especies):
+    rows = lista_arboles
+    inclinaciones = []
+
+    for rows in lista_arboles:
+        columna = rows['nombre_com']
+        inclinacion = rows['inclinacio']
+
+        filas = (columna, inclinacion)
+        inclinaciones.append(filas)
+    return inclinaciones
+
+fila = leer_parque('../Data/arbolado-en-espacios-verdes.csv', 'GENERAL PAZ')
+inclinaciones = obtener_inclinaciones(fila,especies)
+#print(inclinaciones)
+
+
