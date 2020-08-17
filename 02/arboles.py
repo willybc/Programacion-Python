@@ -118,7 +118,7 @@ fila3 = leer_parque('../Data/arbolado-en-espacios-verdes.csv', 'CENTENARIO')
 
 alturas_general, alturas_general2 = obtener_alturas(fila1, especies)
 alturas_andes, alturas_andes2 = obtener_alturas(fila2, especies)
-alturas_cente,alturas_cente2 = obtener_alturas(fila3, especies)
+alturas_cente, alturas_cente2 = obtener_alturas(fila3, especies)
 
 parque1 = 'GENERAL PAZ'
 parque2 = 'ANDES, LOS'
@@ -128,24 +128,49 @@ max1=0.0
 max2=0.0
 max3=0.0
 
+prom1=0.0
+prom2=0.0
+prom3=0.0
+
+cont1=0
+cont2=0
+cont3=0
+
+sum1=0
+sum2=0
+sum3=0
+
 for x in alturas_general2:
     if x[2] == parque1:
         if x[0] == 'Jacarandá':
+            cont1+=1
+            sum1+=x[1]
             if max1 < x[1]:
                 max1 = x[1]
+
+prom1 = sum1/cont1
 
 for y in alturas_andes2:
     if y[2] == parque2:
         if y[0] == 'Jacarandá':
+            #print(y)
+            cont2+=1
+            sum2+=y[1]
             if max2 < y[1]:
                 max2 = y[1]
+
+prom2 = sum2/cont2
+
 for w in alturas_cente2:
     if w[2] == parque3:
-        if w[0] == 'Jacarandá':
+        if w[0] == 'Jacarandá':            
+            cont3+=1
+            sum3+=w[1]
             if max3 < w[1]:
                 max3 = w[1]    
 
+prom3 = sum3/cont3
 
 print('Med\t\tGeneral Paz\t\tLos Andes\t\tCentenario') 
 print('Alt\t\t',max1,'\t\t\t',max2,'\t\t\t',max3)
-print('Pro\t\t')
+print('Pro\t\t',round(prom1,2),'\t\t\t',round(prom2,2),'\t\t\t',round(prom3,2))
