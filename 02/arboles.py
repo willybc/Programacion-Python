@@ -19,6 +19,7 @@ def leer_parque(nombre_archivo, parque):
     f.close()
     return fila
 
+#fila = leer_parque('../Data/arbolado-en-espacios-verdes.csv', 'GENERAL PAZ')
 fila = leer_parque('../Data/arbolado-en-espacios-verdes.csv', 'GENERAL PAZ')
 #print(fila)
 
@@ -43,7 +44,7 @@ especies = especies(fila)
 
 def contar_ejemplares(nombre_archivo):
     from collections import Counter
-    
+
     key = [] #lista
 
     most1= []
@@ -90,7 +91,61 @@ def contar_ejemplares(nombre_archivo):
             
     return tenencias
 
-key = contar_ejemplares('../Data/arbolado-en-espacios-verdes.csv')
+#key = contar_ejemplares('../Data/arbolado-en-espacios-verdes.csv')
+
+def obtener_alturas(lista_arboles, especie):
+    rows = lista_arboles
+    alturas = []
+    alturas2 = []
+
+    for rows in lista_arboles:
+        columna = rows['nombre_com']
+        altura = float((rows['altura_tot']))
+        lugar = rows['espacio_ve']
+        #lista 'alturas' = [columna , altura]
+        filas = (columna, altura)
+        alturas.append(filas) 
+
+        #lista 'alturas2' = [columna , altura, lugar]
+        filas2 = (columna, altura, lugar)
+        alturas2.append(filas2)
+
+    return alturas,alturas2
+
+fila1 = leer_parque('../Data/arbolado-en-espacios-verdes.csv', 'GENERAL PAZ')
+fila2 = leer_parque('../Data/arbolado-en-espacios-verdes.csv', 'ANDES, LOS')
+fila3 = leer_parque('../Data/arbolado-en-espacios-verdes.csv', 'CENTENARIO')
+
+alturas_general, alturas_general2 = obtener_alturas(fila1, especies)
+alturas_andes, alturas_andes2 = obtener_alturas(fila2, especies)
+alturas_cente,alturas_cente2 = obtener_alturas(fila3, especies)
+
+parque1 = 'GENERAL PAZ'
+parque2 = 'ANDES, LOS'
+parque3 = 'CENTENARIO'
+
+max1=0.0
+max2=0.0
+max3=0.0
+
+for x in alturas_general2:
+    if x[2] == parque1:
+        if x[0] == 'Jacarandá':
+            if max1 < x[1]:
+                max1 = x[1]
+
+for y in alturas_andes2:
+    if y[2] == parque2:
+        if y[0] == 'Jacarandá':
+            if max2 < y[1]:
+                max2 = y[1]
+for w in alturas_cente2:
+    if w[2] == parque3:
+        if w[0] == 'Jacarandá':
+            if max3 < w[1]:
+                max3 = w[1]    
 
 
-         
+print('Med\t\tGeneral Paz\t\tLos Andes\t\tCentenario') 
+print('Alt\t\t',max1,'\t\t\t',max2,'\t\t\t',max3)
+print('Pro\t\t')
