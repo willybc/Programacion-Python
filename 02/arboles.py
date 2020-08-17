@@ -192,3 +192,36 @@ inclinaciones = obtener_inclinaciones(fila,especies)
 #print(inclinaciones)
 
 
+def especimen_mas_inclinado(lista_arboles):
+    rows = lista_arboles
+    max_inclinacion=0
+    especie_max={''}
+    
+    #devuelve el espacio
+    espacio={''}
+    for d in rows:
+        espacio = d['espacio_ve']
+
+    for rows in lista_arboles:
+        columna = rows['nombre_com']
+        inclinacion = int(rows['inclinacio'])
+        
+        if int(inclinacion) > max_inclinacion:
+            max_inclinacion = inclinacion
+            especie_max = columna
+    return max_inclinacion, especie_max, espacio
+
+fila1 = leer_parque('../Data/arbolado-en-espacios-verdes.csv', 'GENERAL PAZ')
+fila2 = leer_parque('../Data/arbolado-en-espacios-verdes.csv', 'ANDES, LOS')
+fila3 = leer_parque('../Data/arbolado-en-espacios-verdes.csv', 'CENTENARIO')
+
+max_inclinacion, especie_max, espacio = especimen_mas_inclinado(fila1)
+print(f'En el parque {espacio} hay un {especie_max} inclinado {max_inclinacion} grados')
+
+max_inclinacion, especie_max, espacio = especimen_mas_inclinado(fila2)
+print(f'En el parque {espacio} hay un {especie_max} inclinado {max_inclinacion} grados')
+
+max_inclinacion, especie_max, espacio = especimen_mas_inclinado(fila3)
+print(f'En el parque {espacio} hay un {especie_max} inclinado {max_inclinacion} grados')
+
+    
