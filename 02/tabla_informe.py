@@ -61,5 +61,4 @@ print('%10s %10s %10s %10s' % headers)
 print('%10s %10s %10s %10s' % lineas)
 
 for x in informe:
-    
-    print('%10s %10d %10.2f %10.2f' % informe[x])
+    print('%10s %10d     $%.2f %10.2f' % informe[x])
