@@ -55,5 +55,11 @@ precios = leer_precios('../Data/precios.csv')
 
 informe = hacer_informe(camion, precios)
 
+headers = ('Nombre', 'Cajones', 'Precio', 'Cambio')
+lineas = ('----------', '----------', '----------', '----------')
+print('%10s %10s %10s %10s' % headers)
+print('%10s %10s %10s %10s' % lineas)
+
 for x in informe:
-    print(informe[x])
+    
+    print('%10s %10d %10.2f %10.2f' % informe[x])
