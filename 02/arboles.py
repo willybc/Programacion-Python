@@ -55,11 +55,9 @@ def contar_ejemplares(nombre_archivo):
     parque2 = 'ANDES, LOS'
     parque3 = 'CENTENARIO'
 
-
     f = open(nombre_archivo, 'rt', encoding="utf8")
     rows = csv.reader(f) #fila
     headers = next(rows) #encabezado
-
 
     tenencias = Counter()
     most1 = Counter()
@@ -92,6 +90,7 @@ def contar_ejemplares(nombre_archivo):
     return tenencias
 
 #key = contar_ejemplares('../Data/arbolado-en-espacios-verdes.csv')
+
 
 def obtener_alturas(lista_arboles, especie):
     rows = lista_arboles
@@ -171,9 +170,9 @@ for w in alturas_cente2:
 
 prom3 = sum3/cont3
 
-print('Med\t\tGeneral Paz\t\tLos Andes\t\tCentenario') 
-print('Alt\t\t',max1,'\t\t\t',max2,'\t\t\t',max3)
-print('Pro\t\t',round(prom1,2),'\t\t\t',round(prom2,2),'\t\t\t',round(prom3,2))
+#print('Med\t\tGeneral Paz\t\tLos Andes\t\tCentenario') 
+#print('Alt\t\t',max1,'\t\t\t',max2,'\t\t\t',max3)
+#print('Pro\t\t',round(prom1,2),'\t\t\t',round(prom2,2),'\t\t\t',round(prom3,2))
 
 def obtener_inclinaciones(lista_arboles, especies):
     rows = lista_arboles
@@ -216,12 +215,44 @@ fila2 = leer_parque('../Data/arbolado-en-espacios-verdes.csv', 'ANDES, LOS')
 fila3 = leer_parque('../Data/arbolado-en-espacios-verdes.csv', 'CENTENARIO')
 
 max_inclinacion, especie_max, espacio = especimen_mas_inclinado(fila1)
-print(f'En el parque {espacio} hay un {especie_max} inclinado {max_inclinacion} grados')
+#print(f'En el parque {espacio} hay un {especie_max} inclinado {max_inclinacion} grados')
 
 max_inclinacion, especie_max, espacio = especimen_mas_inclinado(fila2)
-print(f'En el parque {espacio} hay un {especie_max} inclinado {max_inclinacion} grados')
+#print(f'En el parque {espacio} hay un {especie_max} inclinado {max_inclinacion} grados')
 
 max_inclinacion, especie_max, espacio = especimen_mas_inclinado(fila3)
-print(f'En el parque {espacio} hay un {especie_max} inclinado {max_inclinacion} grados')
+#print(f'En el parque {espacio} hay un {especie_max} inclinado {max_inclinacion} grados')
 
+#Devolver la especie que en promedio tiene la mayor inclinacion y el promedio calculado
+def especie_promedio_mas_inclinada(lista_arboles):
+    from collections import Counter
+    most = []
+    most = Counter()
     
+    tenencias= []
+    tenencias = Counter()
+
+    rows = lista_arboles
+
+    #devuelve el parque
+    espacio={''}
+    for d in rows:
+        espacio = d['espacio_ve']
+
+    for rows in lista_arboles:
+        columna = rows['nombre_com']
+        inclinacion = int(rows['inclinacio'])
+
+        #
+        tenencias[columna] += inclinacion
+        #
+        most[rows['nombre_com']] += 1
+
+    for i in most:
+        prom = tenencias[i] / most[i] 
+        print(f'Los {i} del parque {espacio} tiene un promedio de inclinacion de {prom} grados')
+
+    return
+
+fila2 = leer_parque('../Data/arbolado-en-espacios-verdes.csv', 'ANDES, LOS')
+especie_promedio_mas_inclinada(fila2)
