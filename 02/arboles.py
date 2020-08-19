@@ -170,9 +170,9 @@ for w in alturas_cente2:
 
 prom3 = sum3/cont3
 
-#print('Med\t\tGeneral Paz\t\tLos Andes\t\tCentenario') 
-#print('Alt\t\t',max1,'\t\t\t',max2,'\t\t\t',max3)
-#print('Pro\t\t',round(prom1,2),'\t\t\t',round(prom2,2),'\t\t\t',round(prom3,2))
+print('Med\t\tGeneral Paz\t\tLos Andes\t\tCentenario') 
+print('Alt\t\t',max1,'\t\t\t',max2,'\t\t\t',max3)
+print('Pro\t\t',round(prom1,2),'\t\t\t',round(prom2,2),'\t\t\t',round(prom3,2))
 
 def obtener_inclinaciones(lista_arboles, especies):
     rows = lista_arboles
@@ -225,6 +225,7 @@ max_inclinacion, especie_max, espacio = especimen_mas_inclinado(fila3)
 
 #Devolver la especie que en promedio tiene la mayor inclinacion y el promedio calculado
 def especie_promedio_mas_inclinada(lista_arboles):
+    print('\nFuncion especie_prom_mas_inclinada ejecutandose...\n')
     from collections import Counter
     most = []
     most = Counter()
