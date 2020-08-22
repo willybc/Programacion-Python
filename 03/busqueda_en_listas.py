@@ -21,9 +21,19 @@ def buscar_n_elemento(lista, elemento):
     
     return contador
 
+def maximo(lista):
+    m = -99999
+    for e in lista:
+        if e > m:
+            m = e
+    
+    return m
+
+
 lista = [1,2,3,2,3,4]
 buscar_u_elemento(lista, 5)
 
 buscar_n_elemento(lista, 2)
 
-
+max = maximo([-5,-4])
+print(max)
