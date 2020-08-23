@@ -31,16 +31,10 @@ def leer_precios(nombre_archivo):
 
     return precios
 
-#Costo camion
-camion,costo = leer_camion('../Data/fecha_camion.csv')
-#print('Costo camion:', costo)
-precios = leer_precios('../Data/precios.csv')
-
 #Recaudacion con la venta
-recaudacion=0
-recaudacion_total=0
-
 def recau(arch1, arch2):
+    recaudacion=0
+    recaudacion_total=0
     fila=[]
     f = open(arch1, 'rt')
     reader = csv.reader(f)
@@ -65,16 +59,12 @@ def recau(arch1, arch2):
     f.close()   
     return recaudacion_total
 
+camion,costo = leer_camion('../Data/fecha_camion.csv')
+precios = leer_precios('../Data/precios.csv')
 recaudacion_total = recau('../Data/fecha_camion.csv', '../Data/precios.csv')
-#print(recaudacion_total)
 
 #Diferencia
 diferencia = recaudacion_total - costo
 print(f'| Costo camion {costo:<8} | Recaudacion venta {recaudacion_total:<8} | Diferencia {round(diferencia,2):<8}')
 
-if recaudacion_total > costo:
-    print('Hubo ganancia!')
-elif recaudacion_total == costo:
-    print('No ganamos ,ni perdimos')
-else:
-    print('Perdimos!')
+
