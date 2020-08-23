@@ -23,4 +23,8 @@ def leer_parque(nombre_archivo, parque):
     return fila
 
 arboleda = leer_parque('../Data/arbolado-en-espacios-verdes.csv', 'GENERAL PAZ')
-print(arboleda)
+
+#Lista de alturas
+
+H=[float(arbol['altura_tot']) for arbol in arboleda]
+H_jacaranda = [float(arbol['altura_tot']) for arbol in arboleda if arbol['nombre_com'] == 'Jacarandá']
