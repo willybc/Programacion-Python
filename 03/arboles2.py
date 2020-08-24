@@ -8,6 +8,8 @@ import csv
 
 def leer_parque(nombre_archivo, parque):
     fila=[] # lista
+    
+    dict2 = {}
 
     f = open(nombre_archivo, 'rt', encoding="utf8")
     rows = csv.reader(f)    #fila
@@ -22,6 +24,22 @@ def leer_parque(nombre_archivo, parque):
     f.close()
     return fila
 
+def medidas_de_especies(especies,arboleda):
+    elementos = len(especies)
+    record2 = {}
+    
+    for i in range(0,elementos):
+        
+        H = [float(arbol['altura_tot']) for arbol in arboleda if arbol['nombre_com'] == especies[i]] 
+        D = [round(float(arbol['diametro']) * 0.1, 2) for arbol in arboleda if arbol['nombre_com'] == especies[i]]
+        
+        dict1 = dict(zip(H, D))
+        
+        record = { especies[i]: dict1 for arbol in arboleda }        
+        record2.update(record)
+  
+    return record2
+    
 arboleda = leer_parque('../Data/arbolado-en-espacios-verdes.csv', 'GENERAL PAZ')
 
 #Lista de alturas
@@ -29,5 +47,8 @@ H=[float(arbol['altura_tot']) for arbol in arboleda]
 
 H_jacaranda = [float(arbol['altura_tot']) for arbol in arboleda if arbol['nombre_com'] == 'Jacarandá']
 D_jacaranda = [round(float(arbol['diametro']) * 0.1, 2) for arbol in arboleda if arbol['nombre_com'] == 'Jacarandá']
-
 tupla = list(zip(H_jacaranda, D_jacaranda))
+
+especies = ['Eucalipto', 'Palo borracho rosado', 'Jacarandá']
+diccionario = medidas_de_especies(especies,arboleda)
+print(diccionario)
