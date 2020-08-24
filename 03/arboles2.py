@@ -25,6 +25,9 @@ def leer_parque(nombre_archivo, parque):
 arboleda = leer_parque('../Data/arbolado-en-espacios-verdes.csv', 'GENERAL PAZ')
 
 #Lista de alturas
-
 H=[float(arbol['altura_tot']) for arbol in arboleda]
+
 H_jacaranda = [float(arbol['altura_tot']) for arbol in arboleda if arbol['nombre_com'] == 'Jacarandá']
+D_jacaranda = [round(float(arbol['diametro']) * 0.1, 2) for arbol in arboleda if arbol['nombre_com'] == 'Jacarandá']
+
+tupla = list(zip(H_jacaranda, D_jacaranda))
