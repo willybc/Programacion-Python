@@ -17,7 +17,6 @@ def es_generala(tirada):
     anterior = 0
     lista = []
 
-    
     for i in tirada:
         if i == anterior:
             cont+=1
@@ -27,12 +26,12 @@ def es_generala(tirada):
         anterior = i
     print('tiradas', lista)
     return lista
-    '''    
+'''    
     if cont == 4:
         return True
     else:
         return False
-    '''
+'''
 
 def primer_tirada(lista):
     cont_rep0 = 0
@@ -52,28 +51,25 @@ def primer_tirada(lista):
             if lista[4] == j:
                 cont_rep4+=1
     rep = [ cont_rep0, cont_rep1, cont_rep2, cont_rep3, cont_rep4 ]
-    #print('posicio',rep)
-    a = max(rep)
-    cont3=0
+    cant = max(rep)
+    cont=0
     for j in rep :
-        if j == a:
-            valor = lista[cont3]    
-        cont3+=1
-
-    print('numero ',valor)
-    print('aparecio', a, 'veces')
-    
-    return valor,a
+        if j == cant:
+            numero = lista[cont]    
+        cont+=1 
+    return numero,cant
 
 tirada = tirar()
 lista = es_generala(tirada)
+numero, cant = primer_tirada(lista)
+print (numero,cant)
 
-valor, a = primer_tirada(lista)
-
+'''
 N = 1000000
-#salio_generala_servida = [es_generala(tirar()) for i in range(N)]
-#G = sum([es_generala(tirar()) for i in range(N)])
-#prob = G/N
+salio_generala_servida = [es_generala(tirar()) for i in range(N)]
+G = sum([es_generala(tirar()) for i in range(N)])
+prob = G/N
 
-#print(f'Tiré {N} veces, de las cuales {G} saqué generala servida.')
-#print(f'Podemos estimar la probabilidad de sacar generala servida mediante {prob:.6f}.')
+print(f'Tiré {N} veces, de las cuales {G} saqué generala servida.')
+print(f'Podemos estimar la probabilidad de sacar generala servida mediante {prob:.6f}.')
+'''
