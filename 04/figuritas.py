@@ -41,6 +41,8 @@ def cuantas_figus(figus_total):
 
 #album = crear_album(figus_total)
 #print(comprar_figu(figus_total))
+
+#4.19
 cant = 0
 
 figus_total = 6
@@ -48,3 +50,11 @@ n_repeticiones = 1000
 
 cant = [ cuantas_figus(figus_total) for i in range(n_repeticiones) ]
 promedio = np.mean(cant)
+
+#4.20
+
+figus_total = 670
+n_repeticiones = 100
+cant = [ cuantas_figus(figus_total) for i in range(n_repeticiones) ]
+promedio = np.mean(cant)
+print(promedio)
