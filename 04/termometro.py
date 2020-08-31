@@ -22,3 +22,7 @@ prom = sum(temperaturas)/len(temperaturas)
 print(f' Maximo = {maxi}')
 print(f' Minimo = {mini}')
 print(f' Promedio = {prom}')
+
+temperaturas.sort()
+posicion_central = int(((N-1)/2)+1)
+print(temperaturas[posicion_central])
