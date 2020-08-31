@@ -38,8 +38,13 @@ def cuantas_figus(figus_total):
     
     return cantidad_figuritas
              
-FIGUS_TOTAL = 670
-#album = crear_album(FIGUS_TOTAL)
-#print(comprar_figu(FIGUS_TOTAL))
+
+#album = crear_album(figus_total)
+#print(comprar_figu(figus_total))
 cant = 0
-cant = cuantas_figus(FIGUS_TOTAL)
+
+figus_total = 6
+n_repeticiones = 1000
+
+cant = [ cuantas_figus(figus_total) for i in range(n_repeticiones) ]
+promedio = np.mean(cant)
