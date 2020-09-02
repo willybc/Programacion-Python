@@ -67,8 +67,9 @@ def comprar_paquete(figus_total, figus_paquete):
 #album = crear_album(figus_total)
 #print(comprar_figu(figus_total))
 
-#4.19
+
 '''
+#4.19
 cant = 0
 figus_total = 6
 n_repeticiones = 1000
@@ -76,20 +77,26 @@ cant = [ cuantas_figus(figus_total) for i in range(n_repeticiones) ]
 promedio = np.mean(cant)
 
 #4.20
-
 figus_total = 670
 n_repeticiones = 100
 cant = [ cuantas_figus(figus_total) for i in range(n_repeticiones) ]
 promedio = np.mean(cant)
 #print(promedio)
-'''
 
 #4.23
 figus_total = 670
 figus_paquete = 5
 paquetetes_comprados = comprar_paquete(figus_total, figus_paquete)
 
+'''
+#4.24
+n_repeticiones = 1000
+figus_total = 670
+figus_paquete = 5
 
+cant = [ (comprar_paquete(figus_total, figus_paquete) ) for i in range(n_repeticiones) ]
+promedio = sum(cant)/len(cant)
+#958.624
 
 
 
