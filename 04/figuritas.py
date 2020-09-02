@@ -37,7 +37,16 @@ def cuantas_figus(figus_total):
         cantidad_figuritas += 1
     
     return cantidad_figuritas
-             
+
+def comprar_paquete(figus_total):
+    paquete = []
+    cant_figuritas = 5
+    
+    for i in range(cant_figuritas):
+        figuritas = random.randint(0,figus_total-1)
+        paquete.append(figuritas)
+    
+    return paquete
 
 #album = crear_album(figus_total)
 #print(comprar_figu(figus_total))
@@ -57,4 +66,11 @@ figus_total = 670
 n_repeticiones = 100
 cant = [ cuantas_figus(figus_total) for i in range(n_repeticiones) ]
 promedio = np.mean(cant)
-print(promedio)
+#print(promedio)
+
+#4.21
+figus_total = 670
+paquete = comprar_paquete(figus_total)
+
+
+
