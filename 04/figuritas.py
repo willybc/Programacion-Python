@@ -10,8 +10,7 @@ Created on Mon Aug 31 02:57:07 2020
 
 import random 
 import numpy as np
-
-
+import matplotlib.pyplot as plt
 
 def crear_album(figus_total):
     album = np.zeros(figus_total).astype(int)
@@ -61,8 +60,7 @@ def comprar_paquete(figus_total, figus_paquete):
                 cantidad_figuritas += 1
     
     paquetes_comprados = cantidad_figuritas / figus_paquete
-    return paquetes_comprados
-                            
+    return paquetes_comprados                      
     
 #album = crear_album(figus_total)
 #print(comprar_figu(figus_total))
@@ -90,7 +88,7 @@ paquetetes_comprados = comprar_paquete(figus_total, figus_paquete)
 
 '''
 #4.24
-n_repeticiones = 1000
+n_repeticiones = 100
 figus_total = 670
 figus_paquete = 5
 
@@ -98,6 +96,14 @@ cant = [ (comprar_paquete(figus_total, figus_paquete) ) for i in range(n_repetic
 promedio = sum(cant)/len(cant)
 #958.624
 
+#4.26
+plt.hist(cant,bins=20)
 
+#4.27
+#90% para completar el album
+estimacion = (90*promedio)/100
+
+#4.28
+#Suponiendo que no hay figuritas repetidas en un paquete
 
 
