@@ -78,3 +78,4 @@ for a in range(0,N):
 print('La probablidad de obtener 31 es de ', treinta_uno/N )
 print('La probablidad de obtener 32 es de ', treinta_dos/N )
 print('La probablidad de obtener 33 es de ', treinta_tres/N )
+

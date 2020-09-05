@@ -4,13 +4,11 @@ Created on Sat Sep  5 20:35:29 2020
 
 @author: WILLY
 """
-
 import csv
 #Precios pagado al productor de frutas
 def leer_camion(nombre_archivo):
     total = 0.0
     camion = []
-
     with open(nombre_archivo, 'rt') as f:
         rows = csv.reader(f)
         headers = next(rows)
@@ -23,7 +21,6 @@ def leer_camion(nombre_archivo):
 #Precios de venta
 def leer_precios(nombre_archivo):
     precios = {}
-
     f = open(nombre_archivo, 'r')
     line = csv.reader(f)
     for line in f:
@@ -32,18 +29,9 @@ def leer_precios(nombre_archivo):
 
     return precios
 
-#print('Costo camion:', costo)
-precios = leer_precios('../Data/precios.csv')
-
-#Recaudacion con la venta
-recaudacion=0
-recaudacion_total=0
-
-
 def hacer_informe(camion, precios):
     tup = ()
     info = {}
-
     for i in camion:
         nombre = i[0]
         cantidad = i[1]
@@ -56,16 +44,18 @@ def hacer_informe(camion, precios):
                 info[i] = tup
     return info
 
+def imprimir_informe():
+    camion = leer_camion('../Data/camion.csv')
+    precios = leer_precios('../Data/precios.csv')
+    informe = hacer_informe(camion, precios)
+    
+    headers = ('Nombre', 'Cajones', 'Precio', 'Cambio')
+    lineas = ('----------', '----------', '----------', '----------')
+    print('%10s %10s %10s %10s' % headers)
+    print('%10s %10s %10s %10s' % lineas)
+    
+    for x in informe:
+        print('%10s %10d     $%.2f %10.2f' % informe[x])
+    return
 
-camion = leer_camion('../Data/camion.csv')
-precios = leer_precios('../Data/precios.csv')
-
-informe = hacer_informe(camion, precios)
-
-headers = ('Nombre', 'Cajones', 'Precio', 'Cambio')
-lineas = ('----------', '----------', '----------', '----------')
-print('%10s %10s %10s %10s' % headers)
-print('%10s %10s %10s %10s' % lineas)
-
-for x in informe:
-    print('%10s %10d     $%.2f %10.2f' % informe[x])
+imprimir_informe()
