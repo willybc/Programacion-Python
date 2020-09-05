@@ -44,11 +44,7 @@ def hacer_informe(camion, precios):
                 info[i] = tup
     return info
 
-def imprimir_informe():
-    camion = leer_camion('../Data/camion.csv')
-    precios = leer_precios('../Data/precios.csv')
-    informe = hacer_informe(camion, precios)
-    
+def imprimir_informe(informe):
     headers = ('Nombre', 'Cajones', 'Precio', 'Cambio')
     lineas = ('----------', '----------', '----------', '----------')
     print('%10s %10s %10s %10s' % headers)
@@ -58,4 +54,14 @@ def imprimir_informe():
         print('%10s %10d     $%.2f %10.2f' % informe[x])
     return
 
-imprimir_informe()
+def informe_camion(camion, precios):
+    camion = leer_camion(camion)
+    precios = leer_precios(precios)
+    
+    informe = hacer_informe(camion, precios)
+    imprimir_informe(informe)
+    
+    return
+
+informe_camion('../Data/camion.csv', '../Data/precios.csv')
+    
