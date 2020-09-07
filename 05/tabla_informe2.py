@@ -4,44 +4,31 @@ Created on Sat Sep  5 20:35:29 2020
 
 @author: WILLY
 """
-import csv
+from fileparse import parse_csv
 #Precios pagado al productor de frutas
 def leer_camion(nombre_archivo):
-    total = 0.0
-    camion = []
-    with open(nombre_archivo, 'rt') as f:
-        rows = csv.reader(f)
-        headers = next(rows)
-        for row in rows:
-            lote = (row[0], int(row[1]), float(row[2]))
-            camion.append(lote)
-            total += lote[1] * lote[2] 
+    camion = parse_csv(nombre_archivo,types=[str, int,float])
     return camion
 
 #Precios de venta
 def leer_precios(nombre_archivo):
-    precios = {}
-    f = open(nombre_archivo, 'r')
-    line = csv.reader(f)
-    for line in f:
-        row = line.split(',')
-        precios[row[0]] = float(row[1])
-
+    precios = parse_csv(nombre_archivo, types=[str,float], has_headers=False)
     return precios
 
-def hacer_informe(camion, precios):
+def hacer_informe(camion,precios):
     tup = ()
-    info = {}
+    info = []
     for i in camion:
-        nombre = i[0]
-        cantidad = i[1]
-        precio = i[2]
+        nombre = i['nombre']
+        cantidad = i['cajones']
+        precio = i['precio']
         for j in precios:
-            if j == i[0]:
-                precio_venta = (precios[j])
+            if j[0] == i['nombre']:
+                precio_venta = (j[1])
                 cambio = precio_venta - precio
                 tup = ( nombre , cantidad, precio , cambio)  
-                info[i] = tup
+                info.append(tuple(tup))
+
     return info
 
 def imprimir_informe(informe):
@@ -51,12 +38,13 @@ def imprimir_informe(informe):
     print('%10s %10s %10s %10s' % lineas)
     
     for x in informe:
-        print('%10s %10d     $%.2f %10.2f' % informe[x])
+        valores = (x[0] , x[1], x[2], x[3])
+        print('%10s %10d     $%.2f     $%.2f' % valores)
     return
 
-def informe_camion(camion, precios):
-    camion = leer_camion(camion)
-    precios = leer_precios(precios)
+def informe_camion(ubi_camion, ubi_precios):
+    camion = leer_camion(ubi_camion)
+    precios = leer_precios(ubi_precios)
     
     informe = hacer_informe(camion, precios)
     imprimir_informe(informe)

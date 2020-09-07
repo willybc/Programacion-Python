@@ -11,45 +11,50 @@ import csv
     Se puede seleccionar sólo un subconjunto de las columnas, determinando el parámetro select, que debe ser una lista de nombres de las columnas a considerar.
 '''
 
-def parse_csv(nombre_archivo, select=['nombre', 'cajones'], types=[str, int], has_headers=True):
-
+def parse_csv(nombre_archivo, select=False, types=[str,float], has_headers=True):
     with open(nombre_archivo) as f:
+        filas = csv.reader(f)
         
-        if has_headers == False:
-            registros = {}
-            
-            filas = csv.reader(f)
-            for fila in f:
-                row = fila.split(',')
-                registros[row[0]] = float(row[1])
-            
-        else:
+        if has_headers:
             # Lee los encabezados del archivo
-            filas = csv.reader(f)
             encabezados = next(filas)
-            
+    
             # Si se indicó un selector de columnas,
-            #    buscar los índices de las columnas especificadas.
-            # Y en ese caso achicar el conjunto de encabezados para diccionarios            
+            # buscar los índices de las columnas especificadas.
+            # Y achicar el conjunto de encabezados para diccionarios
+    
             if select:
-                indices = [encabezados.index(nombre_columna) for nombre_columna in select]
+                indices = [encabezados.index(ncolumna) for ncolumna in select]
                 encabezados = select
             else:
                 indices = []
-            
+    
             registros = []
             for fila in filas:
                 if not fila:    # Saltear filas vacías
                     continue
+                #Conversion de tipo
+                if types:
+                    fila = [func(val) for func, val in zip(types, fila) ] 
                 # Filtrar la fila si se especificaron columnas
                 if indices:
                     fila = [fila[index] for index in indices]
-
+    
                 # Armar el diccionario
                 registro = dict(zip(encabezados, fila))
                 registros.append(registro)
-
+                
+        if has_headers == False:
+            registros = []
+            for fila in filas:
+                if not fila:    # Saltear filas vacías
+                    continue
+                #Conversion de tipo
+                if types:
+                    fila = [func(val) for func, val in zip(types, fila) ] 
+                # Armar el diccionario
+                registros.append((fila[0],fila[1]))
     return registros
 
-camion = parse_csv('../Data/camion.csv', types=[str, int, float])
+camion = parse_csv('../Data/camion.csv',select=['nombre', 'cajones'],types=[str, int])
 precios = parse_csv('../Data/precios.csv', types=[str,float], has_headers=False)
