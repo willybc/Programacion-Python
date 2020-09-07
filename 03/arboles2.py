@@ -9,8 +9,6 @@ import csv
 def leer_parque(nombre_archivo, parque):
     fila=[] # lista
     
-    dict2 = {}
-
     f = open(nombre_archivo, 'rt', encoding="utf8")
     rows = csv.reader(f)    #fila
     headers = next(rows)    #encabezado
