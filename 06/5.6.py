@@ -11,7 +11,7 @@ import csv
     Se puede seleccionar sólo un subconjunto de las columnas, determinando el parámetro select, que debe ser una lista de nombres de las columnas a considerar.
 '''
 
-def parse_csv(nombre_archivo, select=False, types=[str,float], has_headers=True):
+def parse_csv(nombre_archivo, select=False, types=[str,float], has_headers=True, silence_errors=False):
     with open(nombre_archivo) as f:
         filas = csv.reader(f)
         
@@ -48,7 +48,8 @@ def parse_csv(nombre_archivo, select=False, types=[str,float], has_headers=True)
                     registro = dict(zip(encabezados, fila))
                     registros.append(registro)
                 except ValueError as e:
-                    print(f'Row {fila}: No pude convertir {filas}. Motivo {e}')
+                    if not silence_errors:
+                        print(f'Row {fila}: No pude convertir {filas}. Motivo {e}')
             
         if has_headers == False:
             registros = []
@@ -62,6 +63,6 @@ def parse_csv(nombre_archivo, select=False, types=[str,float], has_headers=True)
                 registros.append((fila[0],fila[1]))
     return registros
 
-camion = parse_csv('../Data/missing.csv',select=['nombre', 'cajones'],types=[str, int])
+camion = parse_csv('../Data/missing.csv',select=['nombre', 'cajones'],types=[str, int], silence_errors=True)
 print(camion)
 
