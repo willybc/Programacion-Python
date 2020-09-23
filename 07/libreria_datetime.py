@@ -60,4 +60,10 @@ print('hora =', a.hour)
 print('minuto =', a.minute)
 print('timestamp =', a.timestamp())
 
+#Formato de fecha usando strftime
+now = datetime.now()
+t = now.strftime('%H:%M:%S')
+s1 = now.strftime('%m/%d/%Y, %H:%M:%S')
+s2 = now.strftime('%d/%m/%Y, %H:%M:/%S')
+
 
