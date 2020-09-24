@@ -54,7 +54,7 @@ import datetime
 import time
 a = os.getcwd()
 print(a)
-camino = '01/rebotes.py'
+camino = '../Data/01/rebotes.py'
 stats_archivo = os.stat(camino)
 print(time.ctime(stats_archivo.st_atime))
 
