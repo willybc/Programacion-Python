@@ -20,6 +20,12 @@ import sys
 
 directorio = str(sys.argv[1])
 
+'''
+py (ruta de programa) (ruta de directorio)
+Muestra los archivos .png de la ruta del directorio dada
+'''
+
+
 def listar_imgs(directorio):
     imgs = []
     
