@@ -43,7 +43,7 @@ def hacer_informe(camion,precios):
     print(f'Total de venta {venta_total}')
     balance = venta_total - pago_prod
     if balance > 0:
-        print('Hubo ganancia y fue de : ', round(balance, 2))
+        print('Hubo ganancia y fue de : ', round(balance, 2) )
     else:
         print('No hubo ganancia')
     
