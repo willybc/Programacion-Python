@@ -61,16 +61,6 @@ def imprimir_informe(informe, formateador):
         rowdata = [ nombre, str(cajones), f'{precio:0.2f}', f'{cambio:0.2f}' ]
         formateador.fila(rowdata)
        
-    
-
-    headers = ('Nombre', 'Cajones', 'Precio', 'Cambio')
-    lineas = ('----------', '----------', '----------', '----------')
-    print('%10s %10s %10s %10s' % headers)
-    print('%10s %10s %10s %10s' % lineas)
-    
-    for x in informe:
-        valores = (x[0] , x[1], x[2], x[3])
-        print('%10s %10d     $%.2f     $%.2f' % valores)
     return
 
 def informe_camion(ubi_camion, ubi_precios):
@@ -82,7 +72,9 @@ def informe_camion(ubi_camion, ubi_precios):
     informe = hacer_informe(camion, precios)
     
     #Imprimir el informe
-    formateador = formato_tabla.FormatoTabla()
+    #formateador = formato_tabla.FormatoTablaTXT()
+    #formateador = formato_tabla.FormatoTablaCSV()
+    formateador = formato_tabla.FormatoTablaHTML()
     imprimir_informe(informe, formateador)
     
     return
