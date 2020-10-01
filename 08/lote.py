@@ -10,7 +10,10 @@ class Lote():
         self.nombre = nombre
         self.cajones = cajones
         self.precio = precio
-        
+    
+    def __repr__(self):
+        return f'Lote({self.nombre}, {self.cajones}, {self.precio})'
+    
     #Calculo costo de lote
     def costo(self):
         return self.cajones * self.precio
@@ -19,4 +22,6 @@ class Lote():
     def vender(self, x):
         self.cajones -= x
     
-    
+peras = Lote('Pera', 100, 490.1)
+
+print(peras)
