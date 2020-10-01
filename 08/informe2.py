@@ -70,4 +70,18 @@ def informe_camion(ubi_camion, ubi_precios):
     return
 
 informe_camion('../Data/camion.csv', '../Data/precios.csv')
+
+#8.1
+import lote
+print('\n\n')
+
+a = lote.Lote('Pera', 100, 490.10)
+b = lote.Lote('Manzana', 50, 122.34)
+c = lote.Lote('Naranja', 75, 91.75)
+
+lotes = [a, b, c]
+
+for i in lotes:
+    print(f'{i.nombre:>10s} {i.cajones:>10d} {i.precio:>10.2f}')
+    
     

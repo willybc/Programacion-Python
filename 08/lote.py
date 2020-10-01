@@ -1,0 +1,12 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Sep 30 20:57:36 2020
+
+@author: wilfr
+"""
+
+class Lote():
+    def __init__(self, nombre, cajones, precio):
+        self.nombre = nombre
+        self.cajones = cajones
+        self.precio = precio
