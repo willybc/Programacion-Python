@@ -10,3 +10,13 @@ class Lote():
         self.nombre = nombre
         self.cajones = cajones
         self.precio = precio
+        
+    #Calculo costo de lote
+    def costo(self):
+        return self.cajones * self.precio
+    
+    #Producto vendido 
+    def vender(self, x):
+        self.cajones -= x
+    
+    
