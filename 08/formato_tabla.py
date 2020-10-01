@@ -59,4 +59,12 @@ class FormatoTablaHTML(FormatoTabla):
             #print('<td>', i, '</td>', end='')
         print()
             
-        
+def crear_formateador(nombre):
+        if nombre == 'txt':
+            return FormatoTablaTXT()
+        elif nombre == 'csv':
+            return FormatoTablaCSV()
+        elif nombre == 'html':
+            return FormatoTablaHTML()
+        else:
+            raise RuntimeError(f'Unknow format {nombre}')    

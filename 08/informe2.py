@@ -63,7 +63,13 @@ def imprimir_informe(informe, formateador):
        
     return
 
-def informe_camion(ubi_camion, ubi_precios):
+def informe_camion(ubi_camion, ubi_precios, fmt = 'txt'):
+    '''
+    Crea un informe con la carga de un camion
+    a partir de archivos camion y precio.
+    El formato predeterminado de la salida es txt
+    Alternativas: csv o html
+    '''
     #Lee archivos con datos
     camion = leer_camion(ubi_camion)
     precios = leer_precios(ubi_precios)
@@ -71,10 +77,8 @@ def informe_camion(ubi_camion, ubi_precios):
     #Crea los datos para el informe
     informe = hacer_informe(camion, precios)
     
-    #Imprimir el informe
-    #formateador = formato_tabla.FormatoTablaTXT()
-    #formateador = formato_tabla.FormatoTablaCSV()
-    formateador = formato_tabla.FormatoTablaHTML()
+    #Imprimir el informe  
+    formateador = formato_tabla.crear_formateador(fmt)
     imprimir_informe(informe, formateador)
     
     return
