@@ -84,4 +84,11 @@ lotes = [a, b, c]
 for i in lotes:
     print(f'{i.nombre:>10s} {i.cajones:>10d} {i.precio:>10.2f}')
     
+
+#8.3
+camion_dicts = parse_csv('../Data/camion.csv', select = ['nombre', 'cajones', 'precio'], types = [str, int, float])
+
+camion2 = [ lote.Lote(d['nombre'], d['cajones'], d['precio']) for d in camion_dicts]
+
+print(sum([c.costo() for c in camion2 ]))
     
