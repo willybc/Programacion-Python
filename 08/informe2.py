@@ -5,6 +5,7 @@ Created on Sat Sep  5 20:35:29 2020
 @author: WILLY
 """
 import lote
+import formato_tabla
 from fileparse import parse_csv
 #Precios pagado al productor de frutas
 def leer_camion(nombre_archivo):
@@ -50,7 +51,18 @@ def hacer_informe(camion,precios):
         print('No hubo ganancia \n\n')
     return info
 
-def imprimir_informe(informe):
+def imprimir_informe(informe, formateador):
+    '''
+    Imprime una tabla prolija desde una lista de tuplas
+    con (nombre, cajones, precio, diferencia)
+    '''
+    formateador.encabezado(['Nombre', 'Cantidad', 'Precio', 'Cambio'])
+    for nombre, cajones, precio, cambio in informe:
+        rowdata = [ nombre, str(cajones), f'{precio:0.2f}', f'{cambio:0.2f}' ]
+        formateador.fila(rowdata)
+       
+    
+
     headers = ('Nombre', 'Cajones', 'Precio', 'Cambio')
     lineas = ('----------', '----------', '----------', '----------')
     print('%10s %10s %10s %10s' % headers)
@@ -62,11 +74,16 @@ def imprimir_informe(informe):
     return
 
 def informe_camion(ubi_camion, ubi_precios):
+    #Lee archivos con datos
     camion = leer_camion(ubi_camion)
     precios = leer_precios(ubi_precios)
     
+    #Crea los datos para el informe
     informe = hacer_informe(camion, precios)
-    imprimir_informe(informe)
+    
+    #Imprimir el informe
+    formateador = formato_tabla.FormatoTabla()
+    imprimir_informe(informe, formateador)
     
     return
 
