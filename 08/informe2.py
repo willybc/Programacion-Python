@@ -4,11 +4,13 @@ Created on Sat Sep  5 20:35:29 2020
 
 @author: WILLY
 """
+import lote
 from fileparse import parse_csv
 #Precios pagado al productor de frutas
 def leer_camion(nombre_archivo):
-    camion = parse_csv(nombre_archivo,types=[str, int,float])
-    return camion
+    camion = parse_csv(nombre_archivo, select = ['nombre', 'cajones', 'precio'], types=[str, int,float])
+    camion2 = [ lote.Lote(d['nombre'], d['cajones'], d['precio']) for d in camion]
+    return camion2
 
 #Precios de venta
 def leer_precios(nombre_archivo):
@@ -24,17 +26,17 @@ def hacer_informe(camion,precios):
     venta_total = 0.0
     
     for i in camion:
-        nombre = i['nombre']
-        cantidad = i['cajones']
-        precio = i['precio']
+        nombre = i.nombre
+        cantidad = i.cajones
+        precio = i.precio
     
-        pago_prod += i['cajones']*i['precio']
+        pago_prod += i.cajones * i.precio
 		#valor_mercado += precios[i['nombre']]*i['cajones']
-        i
+        
         for j in precios:
-            if j[0] == i['nombre']:
+            if j[0] == i.nombre:
                 precio_venta = (j[1])
-                venta_total += i['cajones']* precio_venta
+                venta_total += i.cajones* precio_venta
                 cambio = precio_venta - precio
                 tup = ( nombre , cantidad, precio , cambio)  
                 info.append(tuple(tup))
@@ -43,10 +45,9 @@ def hacer_informe(camion,precios):
     print(f'Total de venta {venta_total}')
     balance = venta_total - pago_prod
     if balance > 0:
-        print('Hubo ganancia y fue de : ', round(balance, 2) )
+        print('Hubo ganancia y fue de : ', round(balance, 2), '\n\n' )
     else:
-        print('No hubo ganancia')
-    
+        print('No hubo ganancia \n\n')
     return info
 
 def imprimir_informe(informe):
@@ -71,24 +72,4 @@ def informe_camion(ubi_camion, ubi_precios):
 
 informe_camion('../Data/camion.csv', '../Data/precios.csv')
 
-#8.1
-import lote
-print('\n\n')
 
-a = lote.Lote('Pera', 100, 490.10)
-b = lote.Lote('Manzana', 50, 122.34)
-c = lote.Lote('Naranja', 75, 91.75)
-
-lotes = [a, b, c]
-
-for i in lotes:
-    print(f'{i.nombre:>10s} {i.cajones:>10d} {i.precio:>10.2f}')
-    
-
-#8.3
-camion_dicts = parse_csv('../Data/camion.csv', select = ['nombre', 'cajones', 'precio'], types = [str, int, float])
-
-camion2 = [ lote.Lote(d['nombre'], d['cajones'], d['precio']) for d in camion_dicts]
-
-print(sum([c.costo() for c in camion2 ]))
-    
