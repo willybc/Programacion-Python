@@ -83,6 +83,14 @@ def informe_camion(ubi_camion, ubi_precios, fmt = 'txt'):
     
     return
 
-informe_camion('../Data/camion.csv', '../Data/precios.csv')
+#informe_camion('../Data/camion.csv', '../Data/precios.csv')
 
+def main(args):
+    if len(args) != 4:
+        raise SystemExit('Uso: %s archivo_camion archivo_precios formato' % args[0])
+    informe_camion(args[1], args[2], args[3])
+
+if __name__ == '__main__':
+    import sys
+    main(sys.argv)
 
