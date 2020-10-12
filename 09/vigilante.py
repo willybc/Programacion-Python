@@ -20,7 +20,20 @@ def vigilar(archivo):
             continue          # vuelve al comienzo del while
         yield line
 
+def filematch(lines, substr):
+    for line in lines:
+        if substr in line:
+            yield line
+            
+            
+            
 if __name__ == '__main__':
+    lines = vigilar('../Data/mercadolog.csv')
+    naranjas = filematch(lines, 'Naranja')
+    for line in naranjas:
+        print(line)
+        
+'''  
     import informe
     camion = informe.leer_camion('../Data/camion.csv')
     
@@ -32,3 +45,4 @@ if __name__ == '__main__':
         
         if nombre in camion:
             print(f'{nombre:>10s} {precio:>10.2f} {volumen:>10d}')
+'''     
