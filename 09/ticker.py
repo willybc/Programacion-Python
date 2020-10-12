@@ -45,13 +45,25 @@ def filtrar_datos(filas, nombres):
             yield fila
 
 import informe
-camion = informe.leer_camion('../Data/camion.csv')
+'''camion = informe.leer_camion('../Data/camion.csv')
 filas = parsear_datos(vigilar('../Data/mercadolog.csv'))
 filas = filtrar_datos (filas, camion)
 for fila in filas:
     print(fila)
-
-
+''' 
+#9.12
+import formato_tabla
+import informe
+def ticker(path1 , path2, tipo):
+    camion = informe.leer_camion(path1)
+    filas = parsear_datos(vigilar(path2))
+    filas = filtrar_datos(filas,camion)
+    
+    formateador = formato_tabla.crear_formateador(tipo)
+    formateador.encabezado(['nombre', 'precio', 'volumen'])
+    for fila in filas:
+        fila = [str(x) for x in fila.values()]
+        formateador.fila(fila)
 '''
 if __name__ == '__main__':
     lines = vigilar('../Data/mercadolog.csv')
