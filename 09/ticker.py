@@ -37,10 +37,25 @@ def parsear_datos(lines):
     rows = cambiar_tipo(rows, [str, float, float])
     rows = hace_dicts(rows, ['nombre', 'precio', 'volumen'])
     return rows
-    
+
+#9.11
+def filtrar_datos(filas, nombres):
+    for fila in filas:
+        if fila['nombre'] in nombres:
+            yield fila
+
+import informe
+camion = informe.leer_camion('../Data/camion.csv')
+filas = parsear_datos(vigilar('../Data/mercadolog.csv'))
+filas = filtrar_datos (filas, camion)
+for fila in filas:
+    print(fila)
+
+
+'''
 if __name__ == '__main__':
     lines = vigilar('../Data/mercadolog.csv')
     rows = parsear_datos(lines)
     for row in rows:
-        print(row)
+        print(row)'''
         
