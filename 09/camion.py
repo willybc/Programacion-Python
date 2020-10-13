@@ -22,8 +22,9 @@ class Camion:
         return any([lote.nombre == nombre for lote in self._lotes])
 
     def precio_total(self):
-        return sum([l.costo() for l in self._lotes])
-
+        #return sum([l.costo() for l in self._lotes])
+        return sum( l.costo() for l in self._lotes )            #Usando generandores
+        
     def contar_cajones(self):
         from collections import Counter
         cantidad_total = Counter()
